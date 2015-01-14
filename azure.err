@@ -1,0 +1,30 @@
+Wed Jan 14 2015 15:28:32 GMT-0800 (PST):
+{ [Error: Unable to locate site named http://deploiement-de-shortlie.azurewebsites.net]
+  stack: [Getter/Setter],
+  __frame: 
+   { name: 'lookupSiteNameAndWebSpace__20',
+     line: 871,
+     file: '/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/lib/commands/asm/websites/websitesclient._js',
+     prev: 
+      { name: 'ensureRepositoryUri__17',
+        line: 800,
+        file: '/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/lib/commands/asm/websites/websitesclient._js',
+        prev: [Object],
+        active: false,
+        offset: 3,
+        col: 19 },
+     active: false,
+     offset: 12,
+     col: 4 },
+  rawStack: [Getter] }
+Error: Unable to locate site named http://deploiement-de-shortlie.azurewebsites.net
+    at ___ (/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/lib/commands/asm/websites/websitesclient._js:867:20)
+    at ___ (/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/node_modules/streamline/lib/callbacks/runtime.js:85:13)
+    at ___ (/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/lib/commands/asm/websites/websitesclient._js:473:131)
+    at __tryCatch (/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/node_modules/streamline/lib/callbacks/runtime.js:141:4)
+    at ___ (/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/lib/commands/asm/websites/websitesclient._js:473:67)
+    at getSites__7 (/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/lib/commands/asm/websites/websitesclient._js:473:33)
+    at lookupSiteNameAndWebSpace__20 (/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/lib/commands/asm/websites/websitesclient._js:883:4)
+    at ensureRepositoryUri__17 (/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/lib/commands/asm/websites/websitesclient._js:803:19)
+    at __2 (/Users/HR10/.nvm/v0.10.25/lib/node_modules/azure-cli/lib/commands/asm/site.log._js:94:26)
+
