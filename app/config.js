@@ -1,11 +1,14 @@
 var mongoDB = require('mongodb');
 var mongoose = require('mongoose');
 
-var db = mongoose.connect('mongodb://MongoLab-v:poUVZNK8geNFwNKaZy0TDonuls4GaDXtX.S3apXh.wo-@ds052837.mongolab.com:52837/MongoLab-v');
+// Change URI
+//
+// //MongoLab-v:poUVZNK8geNFwNKaZy0TDonuls4GaDXtX.S3apXh.wo-@ds052837.mongolab.com:52837/MongoLab-v'
+var db = mongoose.connect('mongodb://localhost/shortlydb');
 var path = require('path');
 
-var Schema = mongoose.Schema;
 
+// Need to define connection, or use db?
 
 module.exports = db;
 
