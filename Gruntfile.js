@@ -3,8 +3,20 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      dist: {
+        src: [
+          'public/client/app.js',
+          'public/client/link.js',
+          'public/client/links.js',
+          'public/client/linkView.js',
+          'public/client/linksView.js',
+          'public/client/createLinkView.js',
+          'public/client/router.js'
+        ],
+        dest: 'public/dist/concattedClient.js'
+      }
     },
-
+//client files
     mochaTest: {
       test: {
         options: {
@@ -19,13 +31,21 @@ module.exports = function(grunt) {
         script: 'server.js'
       }
     },
-
+    // uglifying to build folder
     uglify: {
+      options: {
+        mangle: false
+      },
+      myTarget: {
+        files: {
+          'public/dist/uglifiedApp.js' : ['public/dist/concattedClient.js']
+        }
+      }
     },
 
     jshint: {
       files: [
-        // Add filespec list here
+        'server.js','server-config.js','Gruntfile.js','public/dist/uglifiedApp.js'
       ],
       options: {
         force: 'true',
@@ -36,7 +56,6 @@ module.exports = function(grunt) {
         ]
       }
     },
-
     cssmin: {
     },
 
@@ -61,6 +80,15 @@ module.exports = function(grunt) {
       prodServer: {
       }
     },
+
+    gitpush: {
+      azure: {
+        options: {
+          branch: 'master'
+        }
+      }
+    },
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -71,6 +99,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-git');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -104,9 +133,14 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', [
-    // add your deploy tasks here
-  ]);
+  grunt.registerTask('deploy', function(){
+    if (grunt.option('prod')){
+      grunt.task.run(['concat', 'uglify', 'jshint', 'mochaTest', 'gitpush']);
+    } else {
+      grunt.task.run(['concat', 'uglify', 'jshint', 'mochaTest', 'upload']);
+    }
+
+  });
 
 
 };
