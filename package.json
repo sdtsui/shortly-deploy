@@ -31,7 +31,9 @@
     "bluebird": "1.0.8",
     "mongodb": "~1.4.28",
     "mongoose-auto-increment": "~3.2.0",
-    "mongoose-schema-extend": "~0.1.7"
+    "mongoose-schema-extend": "~0.1.7",
+    "passport": "~0.2.1",
+    "passport-local": "~1.0.0"
   },
   "devDependencies": {
     "supertest": "^0.10.0",
