@@ -2,7 +2,6 @@ var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 var Promise = require('bluebird');
 var mongoose= require('mongoose');
-var autoIncrement = require('mongoose-auto-increment');
 var Schema = mongoose.Schema;
 
 var User;
@@ -16,21 +15,20 @@ var SchemaUsers = new Schema({
 });
 
 
+
+User = mongoose.model('User', SchemaUsers);
+module.exports = User;
+
 User.prototype.comparePassword = function(attemptedPassword, callback) {
   bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
-    if(err){console.log(err)}
+    if(err){console.log(err);}
     callback(isMatch); //unlike soln lecture, does not change fn sig of cb
   });
 };
 //accessible from all instances of user collection.
 //Otherwise, User.comparePassword
 
-SchemaUsers.plugin(autoIncrement.plugin, 'User');
-User = mongoose.model('User', SchemaUsers);
-module.exports = User;
-
-
-User.pre('save', function(next){
+SchemaUsers.pre('save', function(next){
   var cipher = Promise.promisify(bcrypt.hash);
   return cipher(this.password, null, null).bind(this)
     .then(function(hash) {
